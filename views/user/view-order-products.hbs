@@ -1,0 +1,36 @@
+<section>
+    <div class="container">
+
+        <table class=" table mt-5 table-borderless table-hover table-sm">
+           
+            
+                {{#each products}}
+                <tbody style="border: 1px solid;border-color:rgb(188, 184, 184);">
+                <tr>
+                    <td> Image</td>
+                    <td><img style="width: 50px;height:50px;" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
+
+                </tr>
+                <tr>
+                    <td>Name </td>
+                    <td>{{this.product.Name}}</td>
+                </tr>
+                <tr>
+                    <td>Category </td>
+                    <td>{{this.product.Category}}</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>{{this.product.Price}}</td>
+                </tr>
+                <tr>
+                    <td> Discription</td>
+                    <td>{{this.product.Discription}}</td>
+                </tr>        
+                           
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</section>

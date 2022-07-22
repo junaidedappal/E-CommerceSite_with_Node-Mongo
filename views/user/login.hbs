@@ -1,0 +1,58 @@
+<style>
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+</style>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+          class="img-fluid" alt="Phone image">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+       
+
+
+        <form action="/login" method="POST" >
+         
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <label class="form-label">Email address</label>
+            <input type="email" name="Email" class="form-control form-control-lg" />
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+            <label class="form-label" >Password</label>
+            <input type="password" name="Password" class="form-control form-control-lg" />
+          </div>
+          {{#if loginErr}}
+              <p class="error text-danger">{{loginErr}}</p>
+              {{/if}}
+
+          <div class="d-flex justify-content-around align-items-center mb-4">
+            <!-- Checkbox -->
+            <div class="form-check">
+              
+              <a href="/signup">Create an account?</a>
+            </div>
+            <a href="#!">Forgot password?</a>
+          </div>
+
+          <!-- Submit button -->
+          <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-lg btn-block ">log in</button>
+</div>
+
+         
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

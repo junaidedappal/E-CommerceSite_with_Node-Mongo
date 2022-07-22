@@ -1,0 +1,117 @@
+<section>
+    <div class="container">
+        <h4 class="mt-5">Enter Delivery Details</h4>
+        <form action="" id="checkout-form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+
+                        <!-- delivery details input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label">Address</label>
+                            <input type="text" name="Address" class="form-control form-control-lg" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label">pincode</label>
+                            <input type="text" name="Pincode" class="form-control form-control-lg" />
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label class="form-label">Mobile</label>
+                            <input type="text" name="Mobile" class="form-control form-control-lg" />
+                            <input type="text" name="user" value="{{user._id}}" hidden>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-5" style="border: 1px solid;border-color:rgb(188, 184, 184);background-color:;">
+                    <h5>TOTAL AMOUNT : RS {{total}}</h5>
+                    <p class="pt-2">Payment method</p>
+                    <input type="radio" id="" name="Payment-method" value="COD" checked>
+                    <label>COD</label><br>
+                    <input type="radio" id="" name="Payment-method" value="ONLINE">
+                    <label>Online Payment</label><br>
+                    <button class="btn btn-primary mt-3 " style="float: right;margin-right:3rem"
+                        type="submit">Checkout</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+
+<script>
+    $('#checkout-form').submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
+                alert(response)
+                if (response.codSuccess) {
+                    location.href = '/order-success'
+                } else {
+                    razorpayPayment(response)
+                }
+            }
+
+        })
+
+    });
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_cAKPx7oq17ZnDA", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Pomelo",
+            "description": "Smart deals",
+            "image": "",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "",
+                "email": "",
+                "contact": ""
+            },
+            "notes": {
+                "address": "Pomelo Corporate Office"
+            },
+            "theme": {
+                "color": "#FF0000"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on('payment.failed', function (response) {
+            alert(response.error.code);
+            alert(response.error.description);
+            alert(response.error.source);
+            alert(response.error.step);
+            alert(response.error.reason);
+            alert(response.error.metadata.order_id);
+            alert(response.error.metadata.payment_id);
+        });
+        rzp1.open();
+    }
+    function verifyPayment(payment,order) {
+        $.ajax({
+            url: '/verify-payment',
+            data:{
+                payment,
+                order,
+            },
+            method: 'post',
+            success:(response)=>{
+                if(response.status){
+                    location.href='/order-success'
+                }else{
+                    razorpayPayment(response)
+                }
+
+            }
+
+        })
+    }
+</script>

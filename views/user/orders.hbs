@@ -1,0 +1,52 @@
+<section>
+    <div class="container">
+            <h5 class="text-center mt-4 " style="color:#c8c8c8;">Order Details</h5>
+
+
+            <table class=" table mt-5 table-borderless table-hover table-sm ">         
+            
+                {{#each orders}}
+                 <tbody class="col-md-4  col-12 p-5" style="border: 1px solid;border-color:rgb(188, 184, 184);">
+
+                  <tr >
+                      <td>Date</td>
+                      <td>{{this.date}}</td>
+                  </tr>
+                  <tr>
+                      <td>Address </td>
+                      <td class="text-uppercase">{{this.deliveryDetails.address}}</td>
+
+                  </tr>
+                  <tr>
+                      <td> Pincode</td>
+                      <td>{{this.deliveryDetails.pincode}}</td>
+
+                  </tr>
+                  <tr>
+                      <td> Mobile</td>
+                      <td>{{this.deliveryDetails.mobile}}</td>
+                  </tr>
+                  <tr>
+                      <td>Amount </td>
+                      <td>{{this.totalAmount}}</td>
+                  </tr>
+                  <tr>
+                      <td>Payment </td>
+                      <td>{{this.paymentMethod}}</td>
+                  </tr>
+                  <tr>
+                      <td> Status</td>
+                      <td class="text-uppercase" style="font-weight:bold;">{{this.status}}</td>
+                  </tr>
+                  <tr>
+                      <td> option</td>
+                      <td > <a href="/view-order-products/{{this._id}}" class="btn btn-primary" style="font-size: small;"> view-products</a></td>
+
+                  </tr>
+                                     
+                {{/each}} 
+                 
+           
+        </table>
+    </div>
+</section>

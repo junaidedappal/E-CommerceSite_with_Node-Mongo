@@ -1,0 +1,41 @@
+<section>
+  <script>
+  $(document).ready(function () {
+    $('#prodtable').DataTable();
+  });
+</script>
+  <div class="container">
+    <div class="row mt-4">>
+    
+    <table class=" table mt-5 table-borderless table-hover table-sm display" id="prodtable">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Discription</th>
+          <th>Options</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <td><img style="width: 50px;height:50px;" src="/product-images/{{this._id}}.jpg" alt=""></td>
+          <td>{{this.Name}}</td>
+          <td>{{this.Category}}</td>
+          <td>{{this.Price}}</td>
+          <td>{{this.Discription}}</td>
+          <td>
+            <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary"> Edit</a>
+            <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger"
+              onclick="return confirm('Are you sure delete {{this.Name}}.jpg?')">Delete</a>
+          </td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div></div>
+</section>

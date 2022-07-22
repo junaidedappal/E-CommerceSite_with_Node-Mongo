@@ -1,0 +1,50 @@
+ <header>
+   <style>
+     a{
+       font-weight:bold ;
+     }
+   </style>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light " style="background: #eff2f6;">
+    <div style="margin-left: 3rem"><a class="navbar-brand" href="#">
+    <img src="https://icones.pro/wp-content/uploads/2021/04/icone-apple-symbole-logo-rouge.png" width="30" height="30" alt="">
+  </a>
+    <a class="navbar-brand  " href="#"
+        style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;margin-left :-1rem;color:#eb3260">redApple</a></div>
+    <button style="background: #f3f3ed;" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/cart">Cart <span class="badge badge-light bg-warning text-danger" id="cart-count">{{cartCount}}</span></a>
+        </li>
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link " href="/orders">Order</a>
+        </li>
+        {{/if}}
+      </ul>
+
+      <div style="margin-left: auto;">
+
+        {{#if user}}
+            <a href="/logout" class="btn btn-light " style="margin-right: 10px;"> <img  style="width: 1rem;height:1rem;" 
+            src="https://cdn-icons.flaticon.com/png/512/666/premium/666201.png?token=exp=1650509941~hmac=cecc30bcf57e99816aefadbd67eea85e" alt=""> 
+            <span style="color:#484646;font-weight:500">{{user.Fname}}</span> <span style="color: #e35c0e;">| Log out</span></a>
+        {{else}}
+            <a href="/login" class="btn btn-primary  " style="margin-right: 10px;">Log in</a>
+        {{/if}}
+
+      </div>
+    </div>
+  </nav> 
+
+
+
+</header>
+
