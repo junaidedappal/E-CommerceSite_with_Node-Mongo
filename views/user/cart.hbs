@@ -1,58 +1,225 @@
-<section>
-    <div class="container">
-        <div>
-           <h5 class="text-center mt-4 " style="color:#c8c8c8;">Cart Details</h5>
+ <style>
+ .containers{
+  margin: 0;
+ padding: 0;
+ background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
+ display: flex;
+ justify-content: center;
+ align-items: center; 
+ } 
 
-            <table class=" table mt-5 table-borderless table-hover table-sm ">
+.cart-container{
+ width: 70%;
+ height: 100%;
+ background-color: #ffffff;
+ border-radius: 20px;
+ box-shadow: 0px 25px 40px #1687d933;
+}
+.Header{
+ margin: auto;
+ width: 90%;
+ height: 15%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding: 10px;
+}
+.Heading{
+ font-size: 20px;
+ font-family: 'Open Sans';
+ font-weight: 700;
+ color: #2F3841;
+}
+.Action{
+ font-size: 14px;
+ font-family: 'Open Sans';
+ font-weight: 600;
+ color: #E44C4C;
+ cursor: pointer;
+ border-bottom: 1px solid #E44C4C;
+}
+.Cart-Items{
+ margin: auto;
+ width: 90%;
+ height:fit-content;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ padding-bottom: 10px;
+}
+.image-box{
+ width: 15%;
+ text-align: center;
+}
+.about{
+ height: 100%;
+}
+.title{
+ padding-top: 20px;
+ line-height: 10px;
+ font-size: larger;
+ font-family: 'Open Sans';
+ font-weight: 800;
+ color: #202020;
+}
+.subtitle{
+ line-height: 10px;
+ font-size: 18px;
+ font-family: 'Open Sans';
+ font-weight: 600;
+ color: #909090;
+}
+.counter{
+ width: 15%;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+.btn{
+ width: 40px;
+ height: 40px;
+ border-radius: 50%;
+ background-color: #d9d9d9;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ font-size: 20px;
+ font-family: 'Open Sans';
+ font-weight: 900;
+ color: #202020;
+ cursor: pointer;
+}
+.count{
+ font-size: medium;
+ font-family: 'Open Sans';
+ font-weight: 900;
+ color: #202020;
+}
+.prices{
+ height: 100%;
+ text-align: right;
+}
+.amount{
+ padding-top: 20px;
+ font-size: medium;
+ font-family: 'Open Sans';
+ font-weight: 800;
+ color: #202020;
+}
+.save{
+ padding-top: 5px;
+ font-size: 14px;
+ font-family: 'Open Sans';
+ font-weight: 600;
+ color: #1687d9;
+ cursor: pointer;
+}
+.remove{
+ padding-top: 5px;
+ font-size: 14px;
+ font-family: 'Open Sans';
+ font-weight: 600;
+ color: #E44C4C;
+ cursor: pointer;
+}
+hr{
+ width: 66%;
+ float: right;
+ margin-right: 5%;
+}
+.checkout{
+ float: right;
+ margin-right: 5%;
+ width: 28%;
+}
+.total{
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+}
+.Subtotal{
+ font-size: 20px;
+ font-family: 'Open Sans';
+ font-weight:bolder;
+ color: #202020;
+}
+.items{
+ font-size: medium;
+ font-family: 'Open Sans';
+ font-weight: 500;
+ color: #909090;
+ line-height: 10px;
+}
+.total-amount{
+ font-size: larger;
+ font-family: 'Open Sans';
+ font-weight: 700;
+ color: #202020;
+}
+.checkout-div{
+margin-top: 20px;
+margin-bottom: 20px;
+}
+.button{
+ 
+ width: 100%;
+ height: 40px;
+ border: none;
+ background: linear-gradient(to bottom right, #B8D7FF, #8EB7EB);
+ border-radius: 20px;
+ cursor: pointer;
+ font-size: larger;
+ font-family: 'Open Sans';
+ font-weight: ;
+ color: #202020;
+ text-decoration: none;
+ padding: 10px;
+}
+</style> 
+
+
+
+
+
+<section>
+    <div class="containers">
+        <div class="cart-container">
+          <div class="Header">
+          <h3 class="Heading">Shopping Cart</h3>
+          <h5 class="Action">Remove all</h5></div>
 
                 {{#each products}}
-                <tbody class="col-md-4  col-12 p-5" style="border: 1px solid;border-color:rgb(188, 184, 184);">
+                <div class="Cart-Items">
+ <div class="image-box">
+ <img src="/product-images/{{this.product._id}}.jpg" style=" height:100px;" />
+ </div>
+ <div class="about">
+ <h1 class="title">{{this.product.Name}}</h1>
+ </div>
+ <div class="counter">
+ <div class="btn" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)">+</div>
+ <div class="count"><span id="{{this.product._id}}">{{this.quantity}}</span></div>
+ <div class="btn" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</div>
+ </div>
+ <div class="prices">
+    <div class="amount">₹ {{this.product.Price}}</div>
+ <div class="save"><u>Save for later</u></div>
+ <div class="remove"><u>Remove</u></div>
+ </div></div>{{/each}}
+ <hr> 
+ <div class="checkout">
+ <div class="total">
+ <div>
+ <div class="Subtotal">Sub-Total</div>
+ 
+ </div>
+ <div class="total-amount"><span id="total">₹ {{totalValue}}</span></div>
+ </div>
+ <div class="checkout-div">
+ <a href="/place-order" class="button">Checkout</a>
+ </div>
+ </div></div></div></section>
 
-                    <tr class="bg-light">
-                        <th scope="col">{{this.product.Name}}</th>
-                        <td>
-                            <img src="/product-images/{{this.product._id}}.jpg" alt="" style="width:auto;height:4rem">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Price</td>
-                        <td>{{this.product.Price}}</td>
-                    </tr>
-                    <tr>
-                        <td scope="col">Quantity</td>
-                        <td>
-                            <button class="btn btn-outline-secondary "
-                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)"> -
-                            </button>
-                            <span id="{{this.product._id}}">{{this.quantity}}</span>
-                            <button class="btn btn-outline-secondary"
-                                onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"> +
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="col"></th>
-                        <td>
-                            <a href="" class="btn btn-outline-secondary">Remove</a>
-                        </td>
-                    </tr>
-                </tbody>
-                {{/each}}
-            </table>
-            <table class=" table mt-5 table-borderless table-hover table-sm ">
-            <tbody class="col-md-4  col-12 p-5" style="border: 1px solid;border-color:rgb(188, 184, 184);">
-                <tr class="mt-3">
-                    <td scope="col"><h6 class="p-2">TOTAL</h6></td>
-                    <td scope="col"><h6 class="p-2">₹ <span id="total">{{totalValue}}</span></h6></td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td class="p-2"><a href="/place-order" class="btn btn-success " >place order</a></td>
-                </tr>
-            </tbody>
-            </table>
-        </div>
-</section>
 <script>
     function changeQuantity(cartId, proId, userId, count) {
         let quantity = parseInt(document.getElementById(proId).innerHTML)
