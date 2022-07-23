@@ -70,20 +70,20 @@
      
       <h5 class="text-warning animate-charcter">Smart-Phones</h5>
       {{#each products}}
-      <div class="col-md-4 col-6 col-lg-3 col-xl-2 ">
-        <div class="card geeks1" style="">
+      <div class="col-md-4 col-6 col-lg-3 col-xl-2 "  style="margin-bottom: 5px;">
+        <div class="card geeks1" style="margin-right:0px">
           <div class="img-class text-center pt-2 ">
             <img class="card-img-top geeks" src="/product-images/{{this._id}}.jpg" alt="Card image cap"
               style=" ">
           </div>
-
-
           <div class="card-body content-body">
             <h5 class="card-title" style="font-size:smaller;">{{this.Name}}</h5>
             <p class="" style="font-size: smaller;">price : <span style="font-weight:500;">₹ {{this.Price}} </span>
               <br>model : {{this.Category }}<br>
               <span class="" style="font-size: xx-small;"> {{this.Discription}}</span><br>
-              <button class="btn btn-primary" style="font-size: xx-small;" onclick="addToCart('{{this._id}}')">Add To Cart</button>
+              <button class="btn btn-primary" style="font-size: xx-small;" 
+              
+              onclick="myFunction() ; addToCart('{{this._id}}') " >Add To Cart</button>
           </div>
         </div>
       </div>
@@ -91,3 +91,8 @@
     </div>
   </div>
 </section>
+<script>
+function myFunction() {
+  alert("I am an alert box!");
+}
+</script>
