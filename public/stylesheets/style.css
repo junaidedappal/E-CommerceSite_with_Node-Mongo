@@ -2,3 +2,7 @@ p,a{
     font-size: smaller;
     font-weight:600;
 }
+html{
+   max-width:100vw; 
+}
+
